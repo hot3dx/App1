@@ -198,6 +198,9 @@
     <Image Include="Assets\windowslogo.dds">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="Assets\App1-DirectXToolKitXaml12-Sample-App.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
