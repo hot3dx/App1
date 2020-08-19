@@ -14,7 +14,9 @@
 
 ### 3) In the PCH.H you must change the four paths at the bottom for your 
 location of the DirectXToolKitXaml.lib on your computer in the
-#pragma comment(lib, "...")
+#pragma comment(lib, "...") 
+## or, you could install the library at C:\DirectXToolKitXaml12 folder
+and have absolutely no problems at all!
 
 ### 4) The paths in App1 Property Pages must be changed to the locations of the output 
 DirectXToolKitXaml12.lib for each Release/Debug x86/x64 combinations
@@ -39,6 +41,8 @@ q,w,a,s,e,d move the camera X, Y, Z directions
 # then hold down the mouse button as you move the mouse they draw
 
 ## Windows 10, Visual Studio 2019 tools v142 C++17 Target Platform Version 10.0.18362.0 VS Version 16.7.1
+
+It will stick the first time in x86 or x64 debug. Hit restart after everything is loaded
 
 # BTC Donations Greatly Accepted!
 
