@@ -20,17 +20,17 @@
 #include <utility>
 #include "DirectXPage.xaml.h"
 #include <strsafe.h>
-#include "..\DirectXToolkitXaml12\Graphics\RenderTargetState.h"
-#include "..\DirectXToolkitXaml12\Graphics\EffectPipelineStateDescription.h"
-#include "..\DirectXToolkitXaml12\Graphics\CommonStates.h"
-#include "..\DirectXToolkitXaml12\Graphics\GraphicsMemory.h"
-#include "..\DirectXToolkitXaml12\Graphics\VertexTypes.h"
-#include "..\DirectXToolkitXaml12\Graphics\MyResourceUploadBatch.h"
-#include "..\DirectXToolkitXaml12\Graphics\GeometricPrimitive.h"
-#include "..\DirectXToolkitXaml12\Graphics\Geometry.h"
-#include "..\DirectXToolkitXaml12\Graphics\Effects.h"
-#include "..\DirectXToolkitXaml12\Graphics\EffectCommon.h"
-#include "..\DirectXToolkitXaml12\Graphics\DDSTextureLoader.h"
+#include <Graphics\RenderTargetState.h>
+#include <Graphics\EffectPipelineStateDescription.h>
+#include <Graphics\CommonStates.h>
+#include <Graphics\GraphicsMemory.h>
+#include <Graphics\VertexTypes.h>
+#include <Graphics\MyResourceUploadBatch.h>
+#include <Graphics\GeometricPrimitive.h>
+#include <Graphics\Geometry.h>
+#include <Graphics\Effects.h>
+#include <Graphics\EffectCommon.h>
+#include <Graphics\DDSTextureLoader.h>
 
 using namespace App1;
 
