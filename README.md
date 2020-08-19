@@ -2,7 +2,11 @@
 ## DirectXToolKitXaml12 Sample Library Link App1
 
 
-## This is a sample App1 for linking to the library of the DirectXToolKitXaml12 Library
+## This is a sample App1 for linking to the library of the [DirectXToolKitXaml12](https://github.com/hot3dx/DirectXToolKitXaml) Library
+
+![App1 Screenshot](https://github.com/hot3dx/App1/master/blob/Assets/App1-DirectXToolKitXaml12-Sample-App.png)
+
+# Requirements
 
 ### 1) Nuget Package <package id="WinPixEventRuntime" version="1.0.200127001" targetFramework="native" /> required
 
@@ -37,4 +41,14 @@ q,w,a,s,e,d move the camera X, Y, Z directions
 ## Windows 10, Visual Studio 2019 tools v142 C++17 Target Platform Version 10.0.18362.0 VS Version 16.7.1
 
 # BTC Donations Greatly Accepted!
+
+BTC 33DN8TgAe879tDkhsCEpneoVrydHbasuLm 
+
+BCHABC qruhxl8y2753fg0qfx7t8zfqzw92rvaxussk7fcnke
+
+LTC MEQVCCxa5ZZkmGqAfYfRvipNcY4BaTRrFm
+
+By:
+![Ico](https://github.com/hot3dx/AppXamlDX12/blob/master/Assets/AutoDraw2.ico) Jeff Kubitz
+
 
