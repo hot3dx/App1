@@ -39,18 +39,18 @@
 #endif
 
 #if defined(_WIN32) &&  defined(_DEBUG)
-#pragma comment(lib, "C://Users//hot3dx-home//Source//Repos//Xaml//DirectXToolKitXaml12//Debug//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
+#pragma comment(lib, "C://DirectXToolKitXaml12//Debug//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
 #endif
 #if defined(NDEBUG) &&  defined(_WIN32)
-#pragma comment(lib, "C://Users//hot3dx-home//Source//Repos//Xaml//DirectXToolKitXaml12//Release//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
+#pragma comment(lib, "C://DirectXToolKitXaml12//Release//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
 #endif
 
 #if defined(NDEBUG) &&  defined(_X64)
-#pragma comment(lib, "C://Users//hot3dx-home//Source//Repos//Xaml//DirectXToolKitXaml12//x64//Release//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
+#pragma comment(lib, "C://DirectXToolKitXaml12//x64//Release//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
 #endif
 
 #if defined(_DEBUG) &&  defined(_X64)
-#pragma comment(lib, "C://Users//hot3dx-home//Source//Repos//Xaml//DirectXToolKitXaml12//x64//Debug//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
+#pragma comment(lib, "C://DirectXToolKitXaml12//x64//Debug//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
 #endif
 
 
