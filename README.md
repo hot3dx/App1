@@ -4,7 +4,7 @@
 
 ## This is a sample App1 for linking to the library of the [DirectXToolKitXaml12](https://github.com/hot3dx/DirectXToolKitXaml) Library
 
-![App1 Screenshot](https://github.com/hot3dx/App1/master/blob/Assets/App1-DirectXToolKitXaml12-Sample-App.png)
+![App1_Screenshot](https://github.com/hot3dx/App1/blob/master/Assets/App1-DirectXToolKitXaml12-Sample-App.png)
 
 # Requirements
 
