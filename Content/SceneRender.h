@@ -10,31 +10,27 @@
 #include "..\Common\DeviceResources.h"
 #include "..\Content\ShaderStructures.h"
 #include "..\Common\StepTimer.h"
-#include <Graphics\AlignedNew.h>
-#include <Graphics\RenderTargetState.h>
-#include <Graphics\EffectPipelineStateDescription.h>
-#include <Graphics\CommonStates.h>
-#include <Graphics\GraphicsMemory.h>
-#include <Graphics\DescriptorHeap.h>
-#include <Graphics\EffectCommon.h>
-#include <Graphics\VertexTypes.h>
-#include <Graphics\SimpleMath.h>
-#include <Graphics\Model.h>
-#include <Graphics\PrimitiveBatch.h>
-#include <Graphics\GeometricPrimitive.h>
-#include <Graphics\SpriteBatch.h>
-#include <Graphics\SpriteFont.h>
+#include <Graphics\AlignedNewXaml12.h>
+#include <Graphics\RenderTargetStateXaml12.h>
+#include <Graphics\EffectPipelineStateDescriptionXaml12.h>
+#include <Graphics\CommonStatesXaml12.h>
+#include <Graphics\GraphicsMemoryXaml12.h>
+#include <Graphics\DescriptorHeapXaml12.h>
+#include <Graphics\EffectCommonXaml12.h>
+#include <Graphics\VertexTypesXaml12.h>
+#include <Graphics\SimpleMathXaml12.h>
+#include <Graphics\ModelXaml12.h>
+#include <Graphics\PrimitiveBatchXaml12.h>
+#include <Graphics\GeometricPrimitiveXaml12.h>
+#include <Graphics\SpriteBatchXaml12.h>
+#include <Graphics\SpriteFontXaml12.h>
 #include <Graphics\Hot3dxCamera.h>
-#include <Audio\Audio.h>
-#include <Audio\MediaReader.h>
+#include <Audio\AudioXaml12.h>
+#include <Audio\MediaReaderXaml12.h>
 #include <Graphics\Hot3dxGeometry.h>
 #include <thread>
 #include <chrono>
 #include <assert.h>
-
-
-
-
 
 
 namespace App1
@@ -52,9 +48,7 @@ namespace App1
 		void Update(DX::StepTimer const& timer);
 		bool Render();
 		void Clear();
-
 		void SaveState();
-
 		void StartTracking();
 		BOOL checkDistance(float x, float y, float z, float mouseMoveDistDelta);
 		void TrackingUpdate(float positionX, float positionY);
@@ -63,16 +57,26 @@ namespace App1
 		void ReleaseDeviceDependentResources();
 		void OnDeviceLost();
 		void OnDeviceRestored();
-
 		void SetStartCameraVars();
 		
+		XMMATRIX XM_CALLCONV SetXMMatrix(DirectX::XMFLOAT4X4 m, XMMATRIX xm);
+		XMMATRIX XM_CALLCONV GetXMMatrix(DirectX::XMFLOAT4X4 m);
 		//CCameraXYMoveRotation          m_CamXYMoveRotate;
 		void MouseCursorRender(float positionX, float positionY);
 		void DrawPointsOne(XMVECTOR intersect, float positiontX, float positionY);
-		bool                           is3DVisible;
-
+		
 		bool GetLoadingComplete() { return m_loadingComplete; }
 		void SetLoadingComplete(bool complete) { m_loadingComplete = complete; }
+
+		void LoadState();
+		void Rotate(float radians);
+		void XM_CALLCONV DrawGrid(FXMVECTOR xAxis, FXMVECTOR yAxis, FXMVECTOR origin, size_t xdivs, size_t ydivs, GXMVECTOR color);
+		void ScreenMouse3DWorldAlignment();
+		void Initialize();
+		void OnLButtonDown(UINT nFlags, XMFLOAT2 point);
+		void OnRightButtonDown(UINT nFlags, XMFLOAT2 point);
+		void ViewMatrix(XMFLOAT4X4 m, wchar_t* str);
+		void OnMouseMove(UINT nFlags, XMFLOAT2 point);
 
 		// Accessors
 		bool Getm_bLButtonDown() { return m_bLButtonDown; }
@@ -102,26 +106,24 @@ namespace App1
 		Platform::String^ AngleKey = "Angle";
 		Platform::String^ TrackingKey = "Tracking";
 
-		
+		bool                           is3DVisible;
+
 		XMFLOAT3 pSect;
 		bool m_bFaceSelected;
 		int m_iV;
 		bool m_bLButtonDown;
 		bool m_bRButtonDown;
-		void Initialize();
-		void OnLButtonDown(UINT nFlags, XMFLOAT2 point);
-		void OnRightButtonDown(UINT nFlags, XMFLOAT2 point);
+		bool m_bMButtonDown;
 		bool m_bMouseMove;
-		void OnMouseMove(UINT nFlags, XMFLOAT2 point);
-
-		void ViewMatrix(XMMATRIX M, TCHAR* str);
-
+		
 		unsigned int m_iPointCount;
 		unsigned int m_iTotalPointCount;
 		unsigned int m_iLastPoint;
+
 		XMFLOAT2 point;
-		unsigned int m_iTempGroup[10000];
-		XMFLOAT2 m_iTempMouse[10000];
+		Platform::Array<unsigned int>^ m_iTempGroup = ref new Platform::Array<unsigned int>(10000);
+		Platform::Array<float>^ m_iTempMouseX = ref new Platform::Array<float>(10000);
+		Platform::Array<float>^ m_iTempMouseY = ref new Platform::Array<float>(10000);
 
 		unsigned int m_iTempGroupCount;
 		unsigned int m_iGroupCount;
@@ -140,14 +142,7 @@ namespace App1
 
 		float m_widthRatio;
 		float m_heightRatio;
-
-	
-		void LoadState();
-		void Rotate(float radians);
-		void XM_CALLCONV DrawGrid(FXMVECTOR xAxis, FXMVECTOR yAxis, FXMVECTOR origin, size_t xdivs, size_t ydivs, GXMVECTOR color);
-		void ScreenMouse3DWorldAlignment();
-
-	
+			
 		// Constant buffers must be 256-byte aligned.
 		static const UINT c_alignedConstantBufferSize = (sizeof(ModelViewProjectionConstantBuffer) + 255) & ~255;
 
@@ -209,8 +204,7 @@ namespace App1
 		DirectX::XMFLOAT4X4                                                        m_view4x4;
 		//DirectX::SimpleMath::Matrix   
 		DirectX::XMFLOAT4X4 	                                              m_projection4x4;
-		XMMATRIX XM_CALLCONV SetXMMatrix(DirectX::XMFLOAT4X4 m, XMMATRIX xm);
-		XMMATRIX XM_CALLCONV GetXMMatrix(DirectX::XMFLOAT4X4 m);
+		
 		// Descriptors
 		enum Descriptors
 		{
@@ -237,17 +231,7 @@ namespace App1
 			float m_UpZ;
 		};
 		CameraVars m_camVars;
-		/*
-	float m_EyeX;
-	float m_EyeY;
-	float m_EyeZ;
-	float m_LookAtX;
-	float m_LookAtY;
-	float m_LookAtZ;
-	float m_UpX;
-	float m_UpY;
-	float m_UpZ;
-	*/
+		
 		  Audio^ m_audioController;
 		  MediaReader^ mediaReader = ref new MediaReader();
 		  // Screen Draw Variables
@@ -263,9 +247,9 @@ namespace App1
 		  float m_posY;
 		  float m_posZ;
 
-		  float posX[10000];
-		  float posY[10000];
-		  float posZ[10000];
+		  Platform::Array<float>^ posX = ref new Platform::Array<float>(10000);
+		  Platform::Array<float>^ posY = ref new Platform::Array<float>(10000);
+		  Platform::Array<float>^ posZ = ref new Platform::Array<float>(10000);
 
 		  // Set handed direction of world flag
 		  bool    m_isRightHanded;

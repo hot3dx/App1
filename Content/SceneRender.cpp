@@ -20,17 +20,17 @@
 #include <utility>
 #include "DirectXPage.xaml.h"
 #include <strsafe.h>
-#include <Graphics\RenderTargetState.h>
-#include <Graphics\EffectPipelineStateDescription.h>
-#include <Graphics\CommonStates.h>
-#include <Graphics\GraphicsMemory.h>
-#include <Graphics\VertexTypes.h>
-#include <Graphics\MyResourceUploadBatch.h>
-#include <Graphics\GeometricPrimitive.h>
-#include <Graphics\Geometry.h>
-#include <Graphics\Effects.h>
-#include <Graphics\EffectCommon.h>
-#include <Graphics\DDSTextureLoader.h>
+#include <Graphics\RenderTargetStateXaml12.h>
+#include <Graphics\EffectPipelineStateDescriptionXaml12.h>
+#include <Graphics\CommonStatesXaml12.h>
+#include <Graphics\GraphicsMemoryXaml12.h>
+#include <Graphics\VertexTypesXaml12.h>
+#include <Graphics\MyResourceUploadBatchXaml12.h>
+#include <Graphics\GeometricPrimitiveXaml12.h>
+#include <Graphics\GeometryXaml12.h>
+#include <Graphics\EffectsXaml12.h>
+#include <Graphics\EffectCommonXaml12.h>
+#include <Graphics\DDSTextureLoaderXaml12.h>
 
 using namespace App1;
 
@@ -529,7 +529,8 @@ void SceneRender::TrackingUpdate(float positionX, float positionY)
 						pos.push_back(intersect3);
 
 						m_iTempGroup[m_iTempGroupCount] = m_iPointCount;
-						m_iTempMouse[m_iTempGroupCount] = point;
+						m_iTempMouseX[m_iTempGroupCount] = point.x;
+						m_iTempMouseY[m_iTempGroupCount] = point.y;
 						m_iTempGroupCount++;
 						m_iPointCount++;
 
@@ -541,7 +542,8 @@ void SceneRender::TrackingUpdate(float positionX, float positionY)
 					pos.push_back(intersect3);
 
 					m_iTempGroup[m_iTempGroupCount] = m_iPointCount;
-					m_iTempMouse[m_iTempGroupCount] = point;
+					m_iTempMouseX[m_iTempGroupCount] = point.x;
+					m_iTempMouseY[m_iTempGroupCount] = point.y;
 					m_iTempGroupCount++;
 					m_iPointCount++;
 					
@@ -674,10 +676,10 @@ void App1::SceneRender::MouseCursorRender(float positionX, float positionY)
 				// This disables relative mouse movement events.
 			//CoreWindow::GetForCurrentThread()->PointerCursor = ref new CoreCursor(CoreCursorType::Cross, 1);
 
-			ViewMatrix(XMLoadFloat4x4(&m_view4x4), TEXT("m_view"));
-			ViewMatrix(XMLoadFloat4x4(&m_projection4x4), TEXT("m_projection"));
+			ViewMatrix(m_view4x4, TEXT("m_view"));
+			ViewMatrix(m_projection4x4, TEXT("m_projection"));
 			//XMMatrixTransformation(D3DTS_WORLD, &matWorld);
-			ViewMatrix(XMLoadFloat4x4(&m_world4x4), TEXT("m_world"));
+			ViewMatrix(m_world4x4, TEXT("m_world"));
 
 			
 		} // eo mouseButtonDown if
@@ -699,7 +701,8 @@ void App1::SceneRender::DrawPointsOne(XMVECTOR intersect, float positiontX, floa
 					posZ[m_iPointCount] = XMVectorGetZ(intersect);
 
 					m_iTempGroup[m_iTempGroupCount] = m_iPointCount;
-					m_iTempMouse[m_iTempGroupCount] = point;
+					m_iTempMouseX[m_iTempGroupCount] = point.x;
+					m_iTempMouseY[m_iTempGroupCount] = point.y;
 
 					m_iTempGroupCount++;
 					m_iPointCount++;
@@ -713,7 +716,8 @@ void App1::SceneRender::DrawPointsOne(XMVECTOR intersect, float positiontX, floa
 				posZ[m_iPointCount] = XMVectorGetZ(intersect);
 
 				m_iTempGroup[m_iTempGroupCount] = m_iPointCount;
-				m_iTempMouse[m_iTempGroupCount] = point;
+				m_iTempMouseX[m_iTempGroupCount] = point.x;
+				m_iTempMouseY[m_iTempGroupCount] = point.y;
 				m_iTempGroupCount++;
 				m_iPointCount++;
 
@@ -826,7 +830,11 @@ bool SceneRender::Render()
 	// Prepare the command list to render a new frame.
 	m_sceneDeviceResources->Prepare();
 	Clear();
+
 	auto commandList = m_sceneDeviceResources->GetCommandList();
+
+	
+
 	PIXBeginEvent(commandList, PIX_COLOR_DEFAULT, L"Render");
 	// Draw procedurally generated XZ dynamic grid
 	DirectX::XMMATRIX localgrid = XMLoadFloat4x4(&m_world4x4) * DirectX::XMMatrixTranslation(0.0f, 0.0f, -10.f);
@@ -971,45 +979,36 @@ void XM_CALLCONV SceneRender::DrawGrid(FXMVECTOR xAxis, FXMVECTOR yAxis, FXMVECT
 	PIXEndEvent(commandList);
 }
 
-void App1::SceneRender::ViewMatrix(XMMATRIX m, TCHAR* str)
+void App1::SceneRender::ViewMatrix(XMFLOAT4X4 m, wchar_t* str)
 {
 
-#if defined(_XM_ARM_NEON_INTRINSICS_)
-	XMMatrixSet(m.r[0].n128_f32[0], m.r[0].n128_f32[1], m.r[0].n128_f32[2], m.r[0].n128_f32[3],
-		m.r[1].n128_f32[0], m.r[1].n128_f32[1], m.r[1].n128_f32[2], m.r[1].n128_f32[3],
-		m.r[2].n128_f32[0], m.r[2].n128_f32[1], m.r[2].n128_f32[2], m.r[2].n128_f32[3],
-		m.r[3].n128_f32[0], m.r[3].n128_f32[1], m.r[3].n128_f32[2], m.r[3].n128_f32[3]);
-#endif
-#if defined(_XM_NO_INTRINSICS_)
-	XMMatrixSet(m.r[0].m128_f32[0], m.r[0].m128_f32[1], m.r[0].m128_f32[2], m.r[0].m128_f32[3],
-		m.r[1].m128_f32[0], m.r[1].m128_f32[1], m.r[1].m128_f32[2], m.r[1].m128_f32[3],
-		m.r[2].m128_f32[0], m.r[2].m128_f32[1], m.r[2].m128_f32[2], m.r[2].m128_f32[3],
-		m.r[3].m128_f32[0], m.r[3].m128_f32[1], m.r[3].m128_f32[2], m.r[3].m128_f32[3]);
-#endif
+	XMMatrixSet(m._11, m._12, m._13, m._14,
+		m._21, m._22, m._23, m._24,
+		m._31, m._32, m._33, m._34,
+		m._41, m._42, m._43, m._44
+	);
 
+	wchar_t* t = {};
+	//OutputDebugString(t);
+	//OutputDebugString(str);
 
-	TCHAR dest[500] = {};;
-	TCHAR* s = TEXT("%s\n%s\n%.6f  %.6f  %.6f %.6f\n%.6f  %.6f  %.6f %.6f\n%.6f  %.6f  %.6f %.6f\n%.6f  %.6f  %.6f %.6f\n");
-	TCHAR* t = TEXT("The Matrix values: \n");
+	wchar_t* s = { L"\nThe Matrix values: \n%s\n%.6f  %.6f  %.6f %.6f\n%.6f  %.6f  %.6f %.6f\n%.6f  %.6f  %.6f %.6f\n%.6f  %.6f  %.6f %.6f\n" };
+	swprintf_s(t, 1000, s, str, m._11, m._12, m._13, m._14,
+		m._21, m._22, m._23, m._24,
+		m._31, m._32, m._33, m._34,
+		m._41, m._42, m._43, m._44);
 
+	OutputDebugString(t);
+}
 
-#if defined(_XM_ARM_NEON_INTRINSICS_)
-	StringCbPrintf(dest, 500, s, t, str,
-		m.r[0].n128_f32[0], m.r[0].n128_f32[1], m.r[0].n128_f32[2], m.r[0].n128_f32[3],
-		m.r[1].n128_f32[0], m.r[1].n128_f32[1], m.r[1].n128_f32[2], m.r[1].n128_f32[3],
-		m.r[2].n128_f32[0], m.r[2].n128_f32[1], m.r[2].n128_f32[2], m.r[2].n128_f32[3],
-		m.r[3].n128_f32[0], m.r[3].n128_f32[1], m.r[3].n128_f32[2], m.r[3].n128_f32[3]);
-#endif
-#if defined(_XM_NO_INTRINSICS_)
-	StringCbPrintf(dest, 500, s, t, str,
-		m.r[0].m128_f32[0], m.r[0].m128_f32[1], m.r[0].m128_f32[2], m.r[0].m128_f32[3],
-		m.r[1].m128_f32[0], m.r[1].m128_f32[1], m.r[1].m128_f32[2], m.r[1].m128_f32[3],
-		m.r[2].m128_f32[0], m.r[2].m128_f32[1], m.r[2].m128_f32[2], m.r[2].m128_f32[3],
-		m.r[3].m128_f32[0], m.r[3].m128_f32[1], m.r[3].m128_f32[2], m.r[3].m128_f32[3]);
-#endif
+XMMATRIX XM_CALLCONV App1::SceneRender::SetXMMatrix(DirectX::XMFLOAT4X4 m, XMMATRIX xm)
+{
+	return xm;
+}
 
-	OutputDebugString(dest);
-	//SetDlgItemText(n, s);
+XMMATRIX XM_CALLCONV App1::SceneRender::GetXMMatrix(DirectX::XMFLOAT4X4 m)
+{
+	return XMLoadFloat4x4(&m);
 }
 
 void App1::SceneRender::ScreenMouse3DWorldAlignment()
