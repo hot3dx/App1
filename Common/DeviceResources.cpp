@@ -719,6 +719,14 @@ void DX::DeviceResources::SetLogicalSize(Windows::Foundation::Size logicalSize)
 	}
 }
 
+void DX::DeviceResources::SetLogicalResize(Windows::Foundation::Size logicalSize)
+{
+	if (m_logicalSize != logicalSize)
+	{
+		m_logicalSize = logicalSize;
+		//CreateWindowSizeDependentResources();
+	}
+}
 // This method is called in the event handler for the DpiChanged event.
 void DX::DeviceResources::SetDpi(float dpi)
 {
@@ -825,6 +833,7 @@ void DX::DeviceResources::Present(D3D12_RESOURCE_STATES beforeState)
 		//MoveToNextFrame();
 	}
 	*/
+
 	if (beforeState != D3D12_RESOURCE_STATE_PRESENT)
 	{
 		// Transition the render target to the state that allows it to be presented to the display.

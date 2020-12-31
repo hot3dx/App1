@@ -42,6 +42,7 @@ namespace DX
 		void SetSwapChainPanel(Windows::UI::Xaml::Controls::SwapChainPanel^ panel);
 		bool WindowSizeChanged(int width, int height, DXGI_MODE_ROTATION rotation);
 		void SetLogicalSize(Windows::Foundation::Size logicalSize);
+		void SetLogicalResize(Windows::Foundation::Size logicalSize);
 		void SetCurrentOrientation(Windows::Graphics::Display::DisplayOrientations currentOrientation);
 		void SetDpi(float dpi);
 		void ValidateDevice();
@@ -77,6 +78,7 @@ namespace DX
 		DirectX::XMFLOAT4X4         GetOrientationTransform3D() const { return m_orientationTransform3D; }
 		UINT						GetCurrentFrameIndex() const { return m_backBufferIndex; }
 		UINT                        GetBackBufferCount() const { return m_backBufferCount; }
+		void                        ResetBackBufferCount() { m_backBufferCount = 0; }
 		Windows::UI::Xaml::Controls::SwapChainPanel^ GetSwapChainPanel() const { return m_swapChainPanel; }
 		void                        GetCreateDeviceResources() { CreateDeviceResources(); }
 		ID2D1DeviceContext* GetD3DDeviceContext() { return m_d2dContext.Get(); }
