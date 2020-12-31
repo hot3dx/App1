@@ -16,7 +16,7 @@
 location of the DirectXToolKitXaml.lib on your computer in the
 #pragma comment(lib, "...") 
 ## or, you could install the library at C:\DirectXToolKitXaml12 folder
-and have absolutely no problems at all!
+and have absolutely no problems at all! The project files are set for that location!
 
 ### 4) The paths in App1 Property Pages must be changed to the locations of the output 
 DirectXToolKitXaml12.lib for each Release/Debug x86/x64 combinations
@@ -33,6 +33,8 @@ DirectXToolKitXaml12.lib for each Release/Debug x86/x64 combinations
 Click the bottom App Bar three dots (...) in the lower right hand corner
 Click the "Start button on the left of the AppBottomBar
 
+##Sound auto starts 12-31-2020  Happy New Year!
+
 #Keys:
 
 q,w,a,s,e,d move the camera X, Y, Z directions
@@ -40,7 +42,7 @@ q,w,a,s,e,d move the camera X, Y, Z directions
 # click the mouse to draw points 
 # then hold down the mouse button as you move the mouse they draw
 
-## Windows 10, Visual Studio 2019 tools v142 C++17 Target Platform Version 10.0.18362.0 VS Version 16.7.1
+## Windows 10, Visual Studio 2019 tools v142 C++17 Target Platform Version 10.0.18362.0 VS Version 16.8.3
 
 It will stick the first time in x86 or x64 debug. Hit restart after everything is loaded
 
