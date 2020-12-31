@@ -60,6 +60,9 @@
     <ClCompile Include="Content\SceneRender.cpp">
       <Filter>Content</Filter>
     </ClCompile>
+    <ClCompile Include="CardioidSound.cpp" />
+    <ClCompile Include="CustomDecay.cpp" />
+    <ClCompile Include="OmnidirectionalSound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App1Main.h" />
@@ -70,6 +73,9 @@
     <ClInclude Include="Content\SceneRender.h">
       <Filter>Content</Filter>
     </ClInclude>
+    <ClInclude Include="CardioidSound.h" />
+    <ClInclude Include="CustomDecay.h" />
+    <ClInclude Include="OmnidirectionalSound.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\StoreLogo.png">

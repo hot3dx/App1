@@ -18,8 +18,18 @@
 #include "Common\DeviceResources.h"
 #include "App1Main.h"
 
+#include <xapo.h>
+#include <hrtfapoapi.h>
+#include "OmnidirectionalSound.h"
+
 namespace App1
 {
+	public enum class NotifyType
+	{
+		StatusMessage,
+		ErrorMessage
+	};
+
 	/// <summary>
 	/// A page that hosts a DirectX SwapChainPanel.
 	/// </summary>
@@ -31,6 +41,31 @@ namespace App1
 
 		void SaveInternalState(Windows::Foundation::Collections::IPropertySet^ state);
 		void LoadInternalState(Windows::Foundation::Collections::IPropertySet^ state);
+		void AudioInitialize();
+		void AudioStop();
+
+		// Audio Sound
+		void SetOnTimerTickDXP(Object^ sender, Object^ e) { OnTimerTickDXP(sender, e); }
+		// Audio
+		bool Get_initializedDXP() { return _initializedDXP; }
+		void Set_initializedDXP(bool b) { _initializedDXP = b; }
+		void Start_startDXP() { _startDXP.Start(); }
+		void Stop_startDXP() { _startDXP.Stop(); }
+		void Start_startOnUpdate(float a, float h, float r) { _startDXP.OnUpdate(a, h, r); }
+		//void Start_startDXPSetEnvironment(HrtfEnvironment env) { _startDXP.SetEnvironment(env); }
+		Windows::UI::Xaml::DispatcherTimer^ Get_timerDXP() { return _timerDXP; }
+		void Set_timerDXP(Windows::UI::Xaml::DispatcherTimer^ timer) { _timerDXP = timer; }
+		Windows::Foundation::EventRegistrationToken Get_timerEventTokenDXP() { return _timerEventTokenDXP; }
+		void Set_timerEventTokenDXP(Windows::Foundation::EventRegistrationToken token) { _timerEventTokenDXP = token; }
+		float Get_radiusDXP() { return _radiusDXP; }  // Radius of the orbit
+		void  Set_radiusDXP(float radius) { _radiusDXP = radius; }
+		float Get_heightDXP() { return _heightDXP; } // Height at which the sound is orbiting (0 for centered around listener's head, +ve for above and -ve for below)
+		void Set_heightDXP(float height) { _heightDXP = height; }
+		float Get_angularVelocityDXP() { return _angularVelocityDXP; } // Speed of orbit, default is stationary
+		void Set_angularVelocityDXP(float angular) { _angularVelocityDXP = angular; }
+
+	internal:
+		void NotifyUser(Platform::String^ strMessage, NotifyType type);
 
 	private:
 		// XAML low-level rendering event handler.
@@ -69,6 +104,19 @@ namespace App1
 		std::shared_ptr<DX::DeviceResources> m_deviceResources;
 		std::unique_ptr<App1Main> m_main; 
 		bool m_windowVisible;
+		int cnt = 0;
+
+		// Audio
+		void OnTimerTickDXP(Object^ sender, Object^ e);
+		
+		bool                            _initializedDXP = false;
+		OmnidirectionalSound            _startDXP;
+		Windows::UI::Xaml::DispatcherTimer^ _timerDXP;
+		Windows::Foundation::EventRegistrationToken          _timerEventTokenDXP;
+		float                           _radiusDXP = 2.0f;            // Radius of the orbit
+		float                           _heightDXP = 0;               // Height at which the sound is orbiting (0 for centered around listener's head, +ve for above and -ve for below)
+		float                           _angularVelocityDXP = 0;      // Speed of orbit, default is stationary
+
 	};
 }
 

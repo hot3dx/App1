@@ -12,6 +12,7 @@
 
 #include "pch.h"
 #include "DirectXPage.xaml.h"
+#include "OmnidirectionalSound.h"
 
 using namespace App1;
 
@@ -37,6 +38,12 @@ using namespace concurrency;
 
 DirectXPage::DirectXPage():
 	m_windowVisible(true),
+	_initializedDXP(false),
+	_timerDXP(),
+	_timerEventTokenDXP(),
+	_radiusDXP(2.0f),
+	_heightDXP(0.0f),
+	_angularVelocityDXP(0.0f),
 	m_coreInput(nullptr)
 {
 	InitializeComponent();
@@ -102,12 +109,15 @@ DirectXPage::DirectXPage():
 	// Run task on a dedicated high priority background thread.
 	m_inputLoopWorker = ThreadPool::RunAsync(workItemHandler, WorkItemPriority::High, WorkItemOptions::TimeSliced);
 
+	AudioInitialize(); 
+	
 	m_main = std::unique_ptr<App1Main>(new App1Main(m_deviceResources));
 	m_main->StartRenderLoop();
 }
 
 DirectXPage::~DirectXPage()
 {
+	AudioStop();
 	// Stop rendering and processing events on destruction.
 	m_main->StopRenderLoop();
 	m_coreInput->Dispatcher->StopProcessEvents();
@@ -134,7 +144,62 @@ void DirectXPage::LoadInternalState(IPropertySet^ state)
 	m_main->StartRenderLoop();
 }
 
+void App1::DirectXPage::AudioInitialize()
+{
+	auto hr = _startDXP.Initialize(L"Assets//musicmono_adpcm.wav");
+	if (SUCCEEDED(hr))
+	{
+		_timerDXP = ref new DispatcherTimer();
+		_timerEventTokenDXP = _timerDXP->Tick += ref new EventHandler<Platform::Object^>(this, &DirectXPage::OnTimerTickDXP);
+		TimeSpan timespan;
+		timespan.Duration = 10000 / 30;
+		_timerDXP->Interval = timespan;
+
+		_startDXP.Start();
+		_timerDXP->Start();
+		NotifyUser("Playing", NotifyType::StatusMessage);
+	}
+	else
+	{
+		if (hr == E_NOTIMPL)
+		{
+			NotifyUser("HRTF API is not supported on this platform. Use X3DAudio API instead - https://code.msdn.microsoft.com/XAudio2-Win32-Samples-024b3933", NotifyType::ErrorMessage);
+		}
+		else
+		{
+			throw ref new COMException(hr);
+		}
+	}
+
+	_initializedDXP = SUCCEEDED(hr);
+}
+
+void App1::DirectXPage::AudioStop()
+{
+	if (_initializedDXP)
+	{
+		_startDXP.Stop();
+		_timerDXP->Stop();
+		NotifyUser("Stopped", NotifyType::StatusMessage);
+	}
+}
+
 // Window event handlers.
+
+void App1::DirectXPage::NotifyUser(Platform::String^ strMessage, NotifyType type)
+{
+	if (Dispatcher->HasThreadAccess)
+	{
+		//UpdateStatus(strMessage, type);
+	}
+	else
+	{
+		Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new DispatchedHandler([strMessage, type, this]()
+			{
+				//UpdateStatus(strMessage, type);
+			}));
+	}
+}
 
 void DirectXPage::OnVisibilityChanged(CoreWindow^ sender, VisibilityChangedEventArgs^ args)
 {
@@ -351,6 +416,12 @@ void App1::DirectXPage::OnKeyUp(Windows::UI::Core::CoreWindow^, Windows::UI::Cor
 	}
 }
 
+void App1::DirectXPage::OnTimerTickDXP(Object^ sender, Object^ e)
+{
+	// Update the sound position on every dispatcher timer tick.
+	_startDXP.OnUpdate(_angularVelocityDXP, _heightDXP, _radiusDXP);
+}
+
 void DirectXPage::OnCompositionScaleChanged(SwapChainPanel^ sender, Object^ args)
 {
 	critical_section::scoped_lock lock(m_main->GetCriticalSection());
@@ -360,7 +431,7 @@ void DirectXPage::OnCompositionScaleChanged(SwapChainPanel^ sender, Object^ args
 
 void DirectXPage::OnSwapChainPanelSizeChanged(Object^ sender, SizeChangedEventArgs^ e)
 {
-	critical_section::scoped_lock lock(m_main->GetCriticalSection());
-	m_deviceResources->SetLogicalSize(e->NewSize);
-	m_main->CreateWindowSizeDependentResources();
+		critical_section::scoped_lock lock(m_main->GetCriticalSection());
+		m_deviceResources->SetLogicalSize(e->NewSize);
+		m_main->CreateWindowSizeDependentResources();
 }

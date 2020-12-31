@@ -19,23 +19,23 @@
 // The goal will be to put this library in Windows Kits in the appropriate 10.0.18362.0 folders!
 // Or C://Hot3dx
 // 
-#include <Graphics\AlignedNew.h>
-#include <Graphics\RenderTargetState.h>
-#include <Graphics\EffectPipelineStateDescription.h>
-#include <Graphics\CommonStates.h>
-#include <Graphics\GraphicsMemory.h>
-#include <Graphics\DescriptorHeap.h>
-#include <Graphics\EffectCommon.h>
-#include <Graphics\VertexTypes.h>
-#include <Graphics\SimpleMath.h>
-#include <Graphics\Model.h>
-#include <Graphics\PrimitiveBatch.h>
-#include <Graphics\GeometricPrimitive.h>
-#include <Graphics\SpriteBatch.h>
-#include <Graphics\SpriteFont.h>
+#include <Graphics\AlignedNewXaml12.h>
+#include <Graphics\RenderTargetStateXaml12.h>
+#include <Graphics\EffectPipelineStateDescriptionXaml12.h>
+#include <Graphics\CommonStatesXaml12.h>
+#include <Graphics\GraphicsMemoryXaml12.h>
+#include <Graphics\DescriptorHeapXaml12.h>
+#include <Graphics\EffectCommonXaml12.h>
+#include <Graphics\VertexTypesXaml12.h>
+#include <Graphics\SimpleMathXaml12.h>
+#include <Graphics\ModelXaml12.h>
+#include <Graphics\PrimitiveBatchXaml12.h>
+#include <Graphics\GeometricPrimitiveXaml12.h>
+#include <Graphics\SpriteBatchXaml12.h>
+#include <Graphics\SpriteFontXaml12.h>
 #include <Graphics\Hot3dxCamera.h>
-#include <Audio\Audio.h>
-#include <Audio\MediaReader.h>
+#include <Audio\AudioXaml12.h>
+#include <Audio\MediaReaderXaml12.h>
 #include <Graphics\Hot3dxGeometry.h>
 
 /* In Project > App1 Properties > Configuration Properties > Linker > All Options > Additional Options

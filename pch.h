@@ -8,68 +8,98 @@
 //--------------------------------------------------------------------------------------
 
 #pragma once
+#include <ppltasks.h>
 
 #include <wrl.h>
-#include <wrl/client.h>
+#include <wrl\client.h>
+#include <wrl\implements.h>
 #include <dxgi1_4.h>
 #include <dxgi1_5.h>
 #include <dxgi1_6.h>
 #include <d3d12.h>
-#include <d3d12sdklayers.h>
-#include <d3d12shader.h>
-#include <d3d12video.h>
 #include "Common\d3dx12.h"
 #include <d3d11_3.h>
 #include <d2d1_3.h>
 #include <d2d1effects_2.h>
 #include <dwrite_3.h>
 #include <wincodec.h>
-// Uses NuGet.org package WinPixEventRuntime 1.0.190604001
+// Uses NuGet.org package WinPixEventRuntime 1.0.200127001
+// and Microsoft.UI.Xaml.2.5.0-prerelease.200812001
 #include <pix3.h>
 #include <DirectXColors.h>
 #include <DirectXMath.h>
-#include <memory>
+#include <DirectXPackedVector.h>
+#include <DirectXCollision.h>
 #include <agile.h>
 #include <concrt.h>
 #include <collection.h>
 #include "App.xaml.h"
+#include <synchapi.h>
+#include <strsafe.h>
 
 #if defined(_DEBUG)
 #include <dxgidebug.h>
 #endif
 
-#if defined(_WIN32) &&  defined(_DEBUG)
-//#pragma comment(lib, "C://Users//hot3dx-home//Source//Repos//Xaml//DirectXToolKitXaml12//Debug//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
-#pragma comment(lib, "C://DirectXToolKitXaml12//Debug//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
-#endif
-#if defined(NDEBUG) &&  defined(_WIN32)
-//#pragma comment(lib, "C://Users//hot3dx-home//Source//Repos//Xaml//DirectXToolKitXaml12//Release//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
-#pragma comment(lib, "C://DirectXToolKitXaml12//Release//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
-#endif
+#include <algorithm>
+#include <atomic>
+#include <array>
+#include <exception>
+#include <initializer_list>
+#include <iterator>
+#include <list>
+#include <map>
+#include <memory>
+#include <mutex>
+#include <set>
+#include <string>
+#include <type_traits>
+#include <utility>
+#include <vector>
 
-#if defined(NDEBUG) &&  defined(_X64)
-//#pragma comment(lib, "C://Users//hot3dx-home//Source//Repos//Xaml//DirectXToolKitXaml12//x64//Release//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
-#pragma comment(lib, "C://DirectXToolKitXaml12//x64//Release//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
-#endif
+#include <malloc.h>
+#include <stddef.h>
+#include <stdint.h>
 
-#if defined(_DEBUG) &&  defined(_X64)
-//#pragma comment(lib, "C://Users//hot3dx-home//Source//Repos//Xaml//DirectXToolKitXaml12//x64//Debug//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
-#pragma comment(lib, "C://DirectXToolKitXaml12//x64//Debug//DirectXToolKitXaml12//DirectXToolKitXaml12.lib")
-#endif
+#define XAUDIO2_HELPER_FUNCTIONS 1
+#include <xaudio2.h>
+#include <xaudio2fx.h>
+#include <xapo.h>
+#include <hrtfapoapi.h>
 
-#include <Audio/Audio.h>
-#include <Graphics/CommonStates.h>
-#include <Graphics/DirectXHelpers.h>
-#include <Graphics/DDSTextureLoader.h>
-#include <Graphics/DescriptorHeap.h>
-#include <Graphics/Effects.h>
-#include <Graphics/GeometricPrimitive.h>
-#include <Graphics/GraphicsMemory.h>
-#include <Graphics/Model.h>
-#include <Graphics/PrimitiveBatch.h>
-#include <Graphics/MyResourceUploadBatch.h>
-#include <Graphics/RenderTargetState.h>
-#include <Graphics/SimpleMath.h>
-#include <Graphics/SpriteBatch.h>
-#include <Graphics/SpriteFont.h> 
-#include <Graphics/VertexTypes.h>
+#include <mmreg.h>
+#include <mfidl.h>
+#include <mfapi.h>
+#include <mfreadwrite.h>
+#include <mfmediaengine.h>
+#include <mferror.h>
+
+using namespace Microsoft::WRL;
+using namespace Windows::UI::Xaml;
+using namespace Windows::Foundation;
+
+#include "Audio/AudioFileReaderXaml12.h"
+#include "Audio/XAudio2HelpersXaml12.h"
+#include "OmnidirectionalSound.h"
+#include "CardioidSound.h"
+#include "CustomDecay.h"
+#include <Audio/AudioXaml12.h>
+#include <Graphics/CommonStatesXaml12.h>
+#include <Graphics/DirectXHelpersXaml12.h>
+#include <Graphics/DDSTextureLoaderXaml12.h>
+#include <Graphics/DescriptorHeapXaml12.h>
+#include <Graphics/EffectsXaml12.h>
+#include <Graphics/GeometricPrimitiveXaml12.h>
+#include <Graphics/GraphicsMemoryXaml12.h>
+#include <Graphics/ModelXaml12.h>
+#include <Graphics/PrimitiveBatchXaml12.h>
+#include <Graphics/MyResourceUploadBatchXaml12.h>
+#include <Graphics/RenderTargetStateXaml12.h>
+#include <Graphics/SimpleMathXaml12.h>
+#include <Graphics/SpriteBatchXaml12.h>
+#include <Graphics/SpriteFontXaml12.h> 
+#include <Graphics/VertexTypesXaml12.h>
+
+#define SINGLETHREADED FALSE
+
+#define HRTF_2PI    6.283185307f

@@ -144,7 +144,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Link>
-      <AdditionalDependencies>d2d1.lib; d3d11.lib; dxgi.lib; windowscodecs.lib; dwrite.lib;d3d12.lib;dxguid.lib; %(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DirectXToolKitXaml12.lib; d3d12.lib;dxgi.lib;dxguid.lib;d2d1.lib;windowscodecs.lib; dwrite.lib;xaudio2.lib;xinput.lib;mfcore.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;mincore.lib; %(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\arm; $(VCInstallDir)\lib\arm</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
@@ -154,11 +154,13 @@
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <Link>
-      <AdditionalDependencies>d2d1.lib; d3d11.lib; dxgi.lib; windowscodecs.lib; dwrite.lib;d3d12.lib;dxguid.lib; %(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DirectXToolKitXaml12.lib; d3d12.lib;dxgi.lib;dxguid.lib;d2d1.lib;windowscodecs.lib; dwrite.lib;xaudio2.lib;xinput.lib;mfcore.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;mincore.lib; %(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\arm; $(VCInstallDir)\lib\arm</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
@@ -168,11 +170,13 @@
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <Link>
-      <AdditionalDependencies>d2d1.lib; d3d11.lib; dxgi.lib; windowscodecs.lib; dwrite.lib;d3d12.lib;dxguid.lib; %(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DirectXToolKitXaml12.lib; d3d12.lib;dxgi.lib;dxguid.lib;d2d1.lib;windowscodecs.lib; dwrite.lib;xaudio2.lib;xinput.lib;mfcore.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;mincore.lib; %(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\arm64; $(VCInstallDir)\lib\arm64</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
@@ -182,11 +186,13 @@
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <Link>
-      <AdditionalDependencies>d2d1.lib; d3d11.lib; dxgi.lib; windowscodecs.lib; dwrite.lib;d3d12.lib;dxguid.lib; %(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DirectXToolKitXaml12.lib; d3d12.lib;dxgi.lib;dxguid.lib;d2d1.lib;windowscodecs.lib; dwrite.lib;xaudio2.lib;xinput.lib;mfcore.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;mincore.lib; %(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\arm64; $(VCInstallDir)\lib\arm64</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
@@ -196,50 +202,65 @@
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Link>
-      <AdditionalDependencies>d2d1.lib; d3d11.lib; dxgi.lib; windowscodecs.lib; dwrite.lib;d3d12.lib;dxguid.lib; %(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store; $(VCInstallDir)\lib</AdditionalLibraryDirectories>
-      <AdditionalOptions>/WHOLEARCHIVE:C://DirectXToolKitXaml12//Debug//DirectXToolKitXaml12//DirectXToolKitXaml12.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>DirectXToolKitXaml12.lib; d3d12.lib;dxgi.lib;dxguid.lib;d2d1.lib;windowscodecs.lib; dwrite.lib;xaudio2.lib;xinput.lib;mfcore.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;mincore.lib; %(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\DirectXToolKitXaml12\Debug\DirectXToolKitXaml12; %(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store; $(VCInstallDir)\lib</AdditionalLibraryDirectories>
+      <AdditionalOptions>
+      </AdditionalOptions>
     </Link>
     <ClCompile>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>C:\DirectXToolKitXaml12;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DirectXToolKitXaml12; C:\DirectXToolKitXaml12\Audio; C:\DirectXToolKitXaml12\Graphics; $(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <PreprocessorDefinitions>_DEBUG;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Link>
-      <AdditionalDependencies>d2d1.lib; d3d11.lib; dxgi.lib; windowscodecs.lib; dwrite.lib;d3d12.lib;dxguid.lib; %(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store; $(VCInstallDir)\lib</AdditionalLibraryDirectories>
-      <AdditionalOptions>/WHOLEARCHIVE:C://DirectXToolKitXaml12//Release//DirectXToolKitXaml12//DirectXToolKitXaml12.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>DirectXToolKitXaml12.lib; d3d12.lib;dxgi.lib;dxguid.lib;d2d1.lib;windowscodecs.lib; dwrite.lib;xaudio2.lib;xinput.lib;mfcore.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;mincore.lib; %(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\DirectXToolKitXaml12\Release\DirectXToolKitXaml12; %(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store; $(VCInstallDir)\lib</AdditionalLibraryDirectories>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <EnableCOMDATFolding />
       <LinkTimeCodeGeneration />
-      <OptimizeReferences>false</OptimizeReferences>
-      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>
+      </OptimizeReferences>
+      <ImageHasSafeExceptionHandlers>
+      </ImageHasSafeExceptionHandlers>
     </Link>
     <ClCompile>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>C:\DirectXToolKitXaml12;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DirectXToolKitXaml12; C:\DirectXToolKitXaml12\Audio; C:\DirectXToolKitXaml12\Graphics; $(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <PreprocessorDefinitions>NDEBUG;_WIN32; %(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <BasicRuntimeChecks />
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FunctionLevelLinking />
+      <SupportJustMyCode>true</SupportJustMyCode>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Link>
-      <AdditionalDependencies>d2d1.lib; d3d11.lib; dxgi.lib; windowscodecs.lib; dwrite.lib;d3d12.lib;dxguid.lib; %(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\amd64; $(VCInstallDir)\lib\amd64</AdditionalLibraryDirectories>
-      <AdditionalOptions>/WHOLEARCHIVE:C://DirectXToolKitXaml12//x64//Debug//DirectXToolKitXaml12//DirectXToolKitXaml12.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>DirectXToolKitXaml12.lib; d3d12.lib;dxgi.lib;dxguid.lib;d2d1.lib;windowscodecs.lib; dwrite.lib;xaudio2.lib;xinput.lib;mfcore.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;mincore.lib; %(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\DirectXToolKitXaml12\x64\Debug\DirectXToolKitXaml12; %(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\amd64; $(VCInstallDir)\lib\amd64</AdditionalLibraryDirectories>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <LinkTimeCodeGeneration>
       </LinkTimeCodeGeneration>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -247,47 +268,50 @@
     <ClCompile>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>C:\DirectXToolKitXaml12;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DirectXToolKitXaml12; C:\DirectXToolKitXaml12\Audio; C:\DirectXToolKitXaml12\Graphics; $(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <PreprocessorDefinitions>_DEBUG;_X64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Link>
-      <AdditionalDependencies>d3d12.lib;dxgi.lib;dxguid.lib;d2d1.lib;windowscodecs.lib; dwrite.lib;xaudio2.lib;xinput.lib;mfcore.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;mincore.lib; %(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\amd64; $(VCInstallDir)\lib\amd64</AdditionalLibraryDirectories>
-      <AdditionalOptions>/WHOLEARCHIVE:C://DirectXToolKitXaml12//x64//Release//DirectXToolKitXaml12//DirectXToolKitXaml12.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>DirectXToolKitXaml12.lib; d3d12.lib;dxgi.lib;dxguid.lib;d2d1.lib;windowscodecs.lib; dwrite.lib;xaudio2.lib;xinput.lib;mfcore.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;mincore.lib; %(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\DirectXToolKitXaml12\x64\Release\DirectXToolKitXaml12; %(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\amd64; $(VCInstallDir)\lib\amd64</AdditionalLibraryDirectories>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <LinkTimeCodeGeneration />
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <EnableCOMDATFolding />
       <OptimizeReferences />
-      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <ClCompile>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>C:\DirectXToolKitXaml12;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DirectXToolKitXaml12; C:\DirectXToolKitXaml12\Audio; C:\DirectXToolKitXaml12\Graphics; $(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <PreprocessorDefinitions>NDEBUG;_X64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks>
-      </BasicRuntimeChecks>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FunctionLevelLinking>
       </FunctionLevelLinking>
       <Optimization>Disabled</Optimization>
       <SupportJustMyCode>true</SupportJustMyCode>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <WholeProgramOptimization>
+      </WholeProgramOptimization>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <SmallerTypeCheck>false</SmallerTypeCheck>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -345,28 +369,34 @@
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="CardioidSound.h" />
     <ClInclude Include="Common\d3dx12.h" />
     <ClInclude Include="Common\DeviceResources.h" />
     <ClInclude Include="App1Main.h" />
     <ClInclude Include="Content\SceneRender.h" />
+    <ClInclude Include="CustomDecay.h" />
     <ClInclude Include="DirectXPage.xaml.h">
       <DependentUpon>DirectXPage.xaml</DependentUpon>
     </ClInclude>
     <ClInclude Include="Common\DirectXHelper.h" />
     <ClInclude Include="Common\StepTimer.h" />
     <ClInclude Include="Content\ShaderStructures.h" />
+    <ClInclude Include="OmnidirectionalSound.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
+    <ClCompile Include="CardioidSound.cpp" />
     <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="App1Main.cpp" />
     <ClCompile Include="Content\SceneRender.cpp" />
+    <ClCompile Include="CustomDecay.cpp" />
     <ClCompile Include="DirectXPage.xaml.cpp">
       <DependentUpon>DirectXPage.xaml</DependentUpon>
     </ClCompile>
+    <ClCompile Include="OmnidirectionalSound.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
