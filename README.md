@@ -46,11 +46,7 @@ It will stick the first time in x86 or x64 debug. Hit restart after everything i
 
 # BTC Donations Greatly Accepted!
 
-BTC 33DN8TgAe879tDkhsCEpneoVrydHbasuLm 
-
-BCHABC qruhxl8y2753fg0qfx7t8zfqzw92rvaxussk7fcnke
-
-LTC MEQVCCxa5ZZkmGqAfYfRvipNcY4BaTRrFm
+BTC 32HVJHEXh9bMLVkmoSE1d389q2Q1YvfrNE
 
 By:
 ![Ico](https://github.com/hot3dx/AppXamlDX12/blob/master/Assets/AutoDraw2.ico) Jeff Kubitz
